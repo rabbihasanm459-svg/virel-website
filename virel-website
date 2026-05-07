@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virel - E-commerce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #f85606;
+      color: white;
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .search-box button {
+      background: #ffe1d2;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #f85606;
+    }
+
+    nav {
+      margin-top: 12px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #ff7a18, #ff512f);
+      color: white;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .hero button {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      background: white;
+      color: #f85606;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 40px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 14px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .category-card img {
+      width: 80px;
+      margin-bottom: 12px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-title {
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .price {
+      color: #f85606;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: gray;
+      font-size: 14px;
+    }
+
+    .buy-btn {
+      margin-top: 14px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #f85606;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: #d94600;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-top: 50px;
+    }
+
+    @media(max-width:768px) {
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="topbar">
+      <div class="logo">Virel</div>
+
+      <div class="search-box">
+        <input type="text" placeholder="আপনি কী খুঁজছেন?">
+        <button>Search</button>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Fashion</a>
+      <a href="#">Electronics</a>
+      <a href="#">Mobiles</a>
+      <a href="#">Offers</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>কম দামে সেরা ফ্যাশন শপ</h1>
+    <p>টি-শার্ট, প্যান্ট, গেঞ্জি ও ফ্যাশন আইটেম কিনুন কম দামে</p>
+    <button>Shop Now</button>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Popular Categories</h2>
+
+    <div class="categories">
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041889.png">
+        <h3>Fashion</h3>
+      </div>
+
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3659/3659898.png">
+        <h3>Mobile</h3>
+      </div>
+
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png">
+        <h3>Laptop</h3>
+      </div>
+
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png">
+        <h3>Shoes</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Trending Products</h2>
+
+    <div class="products">
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop">
+        <div class="product-info">
+          <div class="product-title">Fashion Hoodie</div>
+          <div class="price">৳ 450</div>
+          <div class="old-price">৳ 650</div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop">
+        <div class="product-info">
+          <div class="product-title">Casual Pant</div>
+          <div class="price">৳ 1,500</div>
+          <div class="old-price">৳ 1,200</div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200&auto=format&fit=crop">
+        <div class="product-info">
+          <div class="product-title">Premium Genji</div>
+          <div class="price">৳ 350</div>
+          <div class="old-price">৳ 550</div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop">
+        <div class="product-info">
+          <div class="product-title">Stylish T-Shirt</div>
+          <div class="price">৳ 850</div>
+          <div class="old-price">৳ 1,200</div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <h2>Virel</h2>
+    <p>© 2026 All Rights Reserved</p>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+
+    const buttons = document.querySelectorAll('.buy-btn');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        cartCount++;
+        document.getElementById('cart-count').innerText = cartCount;
+        alert('Product Added To Cart!');
+      });
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function loginUser() {
+      const email = prompt('Enter Email');
+      const password = prompt('Enter Password');
+
+      if(email && password) {
+        alert('Login Successful');
+      } else {
+        alert('Please Enter Details');
+      }
+    }
+  </script>
+
+  <style>
+    .cart-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #f85606;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .dark-mode {
+      background: #111;
+      color: white;
+    }
+
+    .dark-mode .product-card,
+    .dark-mode .category-card,
+    .dark-mode header,
+    .dark-mode footer {
+      background: #1f1f1f;
+      color: white;
+    }
+
+    .extra-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .extra-buttons button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+
+  <div class="extra-buttons">
+    <button onclick="loginUser()">Login</button>
+    <button onclick="toggleDarkMode()">Dark Mode</button>
+  </div>
+
+  <div class="cart-box">
+    Cart: <span id="cart-count">0</span>
+  </div>
+
+</body>
+</html>
